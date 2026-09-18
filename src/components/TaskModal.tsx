@@ -54,10 +54,13 @@ export function TaskModal({
 
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
+    const prevBody = document.body.style.overflow;
+    const prevHtml = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevBody;
+      document.documentElement.style.overflow = prevHtml;
     };
   }, [open]);
 
@@ -121,68 +124,70 @@ export function TaskModal({
         </div>
 
         <form onSubmit={handleSubmit} className="task-form">
-          <label>
-            Título
-            <input
-              value={form.title}
-              onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-              placeholder="Ej. Lámina de acuarela"
-              required
-            />
-          </label>
+          <div className="modal-body">
+            <label>
+              Título
+              <input
+                value={form.title}
+                onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
+                placeholder="Ej. Lámina de acuarela"
+                required
+              />
+            </label>
 
-          <label>
-            Asignatura
-            <input
-              value={form.subject}
-              onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
-              placeholder="Ej. Ilustración I"
-              required
-            />
-          </label>
+            <label>
+              Asignatura
+              <input
+                value={form.subject}
+                onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
+                placeholder="Ej. Ilustración I"
+                required
+              />
+            </label>
 
-          <label>
-            Descripción
-            <textarea
-              value={form.description}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, description: e.target.value }))
-              }
-              placeholder="Enunciado, enlace Drive, guía, notas…"
-              rows={4}
-            />
-          </label>
+            <label>
+              Descripción
+              <textarea
+                value={form.description}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, description: e.target.value }))
+                }
+                placeholder="Enunciado, enlace Drive, guía, notas…"
+                rows={4}
+              />
+            </label>
 
-          <label>
-            Fecha
-            <input
-              type="date"
-              value={form.due_date}
-              onChange={(e) => setForm((f) => ({ ...f, due_date: e.target.value }))}
-              required
-            />
-          </label>
+            <label>
+              Fecha
+              <input
+                type="date"
+                value={form.due_date}
+                onChange={(e) => setForm((f) => ({ ...f, due_date: e.target.value }))}
+                required
+              />
+            </label>
 
-          <fieldset className="type-fieldset">
-            <legend>Tipo</legend>
-            <div className="type-grid">
-              {TASK_TYPES.map((t) => (
-                <label key={t.id} className={`type-option ${form.type === t.id ? "active" : ""}`}>
-                  <input
-                    type="radio"
-                    name="type"
-                    value={t.id}
-                    checked={form.type === t.id}
-                    onChange={() => setForm((f) => ({ ...f, type: t.id as TaskType }))}
-                  />
-                  <span className="dot" style={{ background: t.color }} />
-                  {t.label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
+            <fieldset className="type-fieldset">
+              <legend>Tipo</legend>
+              <div className="type-grid">
+                {TASK_TYPES.map((t) => (
+                  <label key={t.id} className={`type-option ${form.type === t.id ? "active" : ""}`}>
+                    <input
+                      type="radio"
+                      name="type"
+                      value={t.id}
+                      checked={form.type === t.id}
+                      onChange={() => setForm((f) => ({ ...f, type: t.id as TaskType }))}
+                    />
+                    <span className="dot" style={{ background: t.color }} />
+                    {t.label}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-          {error && <p className="form-error">{error}</p>}
+            {error && <p className="form-error">{error}</p>}
+          </div>
 
           <div className="modal-actions">
             {initial && onDelete && (
