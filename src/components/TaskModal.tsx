@@ -153,7 +153,7 @@ export function TaskModal({
                   setForm((f) => ({ ...f, description: e.target.value }))
                 }
                 placeholder="Enunciado, enlace Drive, guía, notas…"
-                rows={4}
+                rows={3}
               />
             </label>
 
