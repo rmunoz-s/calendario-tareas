@@ -52,6 +52,15 @@ export function TaskModal({
     }
   }, [open, initial, defaultDate]);
 
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   if (!open) return null;
 
   async function handleSubmit(e: FormEvent) {
