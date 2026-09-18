@@ -7,7 +7,7 @@ export const TASK_TYPES: {
   soft: string;
 }[] = [
   { id: "examen", label: "Exámenes", color: "#F07178", soft: "#FDE8EA" },
-  { id: "tarea", label: "Tareas pequeñas", color: "#7BC47F", soft: "#E8F6E9" },
+  { id: "tarea", label: "Excursiones", color: "#7BC47F", soft: "#E8F6E9" },
   { id: "trabajo", label: "Trabajos", color: "#6BA3D9", soft: "#E5F0FA" },
   { id: "otra", label: "Otras", color: "#B48AD9", soft: "#F3EAF9" },
 ];
