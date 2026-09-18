@@ -17,7 +17,7 @@ const body = Nunito({
 export const metadata: Metadata = {
   title: "Calendario de entregas · Grado de ilustración",
   description:
-    "Calendario compartido de exámenes, tareas y trabajos del grado de ilustración.",
+    "Calendario compartido de exámenes, entregas y trabajos del grado de ilustración.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
